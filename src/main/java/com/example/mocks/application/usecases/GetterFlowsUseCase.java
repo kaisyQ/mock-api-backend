@@ -1,6 +1,5 @@
 package com.example.mocks.application.usecases;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.mocks.application.mappers.FlowListMapper;
@@ -10,13 +9,15 @@ import com.example.mocks.infrastructure.repositories.FlowRepository;
 import java.util.List;
 
 @Service
-public class GetterFlowsUseCase {
+public final class GetterFlowsUseCase {
     
-    @Autowired
     private FlowRepository flowRepository;
-
-    @Autowired
     private FlowListMapper flowListMapper;
+
+    public GetterFlowsUseCase(FlowRepository flowRepository, FlowListMapper flowListMapper) {
+        this.flowListMapper = flowListMapper;
+        this.flowRepository = flowRepository;
+    }
 
 
     public List<FlowModel> execute() {
